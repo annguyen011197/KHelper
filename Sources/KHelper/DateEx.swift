@@ -53,6 +53,7 @@ public extension Date {
     
     public enum KStyle: String {
         case short = "dd-MM-YYYY"
+        case short1 = "yyyy-mm-dd"
     }
 }
 
@@ -752,6 +753,8 @@ public extension Date {
     func string(withFormat format: String = "dd/MM/yyyy HH:mm") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.string(from: self)
     }
     
